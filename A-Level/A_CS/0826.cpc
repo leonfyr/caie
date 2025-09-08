@@ -1,0 +1,59 @@
+// Declaration
+DECLARE StudentName : STRING
+DECLARE StudentAge : INTEGER
+DECLARE StudentGPA : REAL
+DECLARE StudentGender : CHAR
+DECLARE HasGraduated : BOOLEAN
+DECLARE EnrollmentDate : DATE
+
+CONSTANT MIN_GPA = 0.0
+CONSTANT MAX_GPA = 4.0
+
+// Input
+OUTPUT "Please enter the student's name:"
+INPUT StudentName
+OUTPUT "Please enter the student's age:"
+INPUT StudentAge
+OUTPUT "Please enter the student's GPA:"
+INPUT StudentGPA
+OUTPUT "Please enter the student's gender:"
+INPUT StudentGender
+
+OUTPUT "Please enter if the student has graduated:"
+INPUT HasGraduated
+OUTPUT "Please enter the enrollment date:"
+INPUT EnrollmentDate
+
+////
+
+// Now the user has three guesses to enter the password correctly
+DECLARE Counter : INTEGER
+
+hasGuessedPW <- FALSE
+numberOfGuesses <- 0
+
+WHILE numberOfGuesses < 3 AND hasGuessedPW = FALSE DO 
+    numberOfGuesses = numberOfGuesses + 1
+    OUTPUT "Guess ", numberOfGuesses, ": Please enter your password (a string): "
+    INPUT currentGuess
+
+    IF LENGTH(firstPassword) = LENGTH(currentGuess) THEN
+        hasGuessedPW <- TRUE
+
+        /// MODIFIED
+        Counter <- 1
+        WHILE Counter <= LENGTH(firstPassword) AND hasGuessedPW DO
+            IF MID(firstPassword, i, 1) <> MID(currentGuess, i, 1) THEN
+                OUTPUT "Characters do not match at index ", i, "."
+                hasGuessedPW <- FALSE
+            ENDIF
+            Counter <- Counter + 1 // iterate
+        ENDWHILE
+        /// END
+
+    ELSE
+        OUTPUT "Password lengths do not match!"
+    ENDIF
+
+ENDWHILE
+

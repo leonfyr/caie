@@ -1,0 +1,185 @@
+// 1 COUNT CONTROLLED
+
+FOR number <- 1 TO 100
+    IF MOD(number, 2) == 1 OR MOD(number, 7) == 0 THEN
+        OUTPUT number
+    ENDIF
+NEXT number
+
+// 2 COUNT CONTROLLED
+
+DECLARE n:INTEGER
+DECLARE res:INTEGER
+
+REPEAT // Input
+    OUTPUT "Please enter a number n: \n"
+    INPUT n
+UNTIL n > 0
+
+// Calculation
+res <- 1 
+FOR i <- 1 TO n
+    res <- res * i
+    OUTPUT res, '\n' // Output immediate results
+NEXT i
+
+OUTPUT n, "! = ", res, "\n"
+
+// Activity 2
+
+// 1
+PROCEDURE Stars()
+    OUTPUT "************\n"
+ENDPROCEDURE
+CALL Stars()
+
+// 2
+PROCEDURE Stars2(num:INTEGER)
+    FOR counter <- 1 TO num
+        OUTPUT '*'
+    NEXT counter
+    OUTPUT '\n'
+ENDPROCEDURE
+
+CALL Stars2(20)
+CALL Stars2(5)
+
+// 3
+PROCEDURE CelsiusToFahrenheit(celsius:REAL)
+    DECLARE fahrenheit:REAL
+    fahrenheit <- (celsius * 9/5) + 32
+    OUTPUT celsius, "C = ", fahrenheit, "F\n"
+ENDPROCEDURE
+
+PROCEDURE FahrenheitToCelsius(fahrenheit:REAL)
+    DECLARE celsius:REAL
+    celsius <- (fahrenheit - 32) * 5/9
+    OUTPUT fahrenheit, "F = ", celsius, "C\n"
+ENDPROCEDURE
+
+CALL CelsiusToFahrenheit(0)
+CALL CelsiusToFahrenheit(100)
+CALL FahrenheitToCelsius(32)
+CALL FahrenheitToCelsius(212)
+
+// 4
+PROCEDURE Grade(score:REAL) // outputs the score to grade
+    DECLARE grade:CHAR
+    IF score >= 90 THEN
+        grade <- 'A'
+    ELSE
+        IF score >= 80 THEN
+            grade <- 'B'
+        ELSE
+            IF score >= 70 THEN
+                grade <- 'C'
+            ELSE
+                IF score >= 60 THEN
+                    grade <- 'D'
+                ELSE
+                    grade <- 'F'
+                ENDIF
+            ENDIF
+        ENDIF
+    ENDIF
+    OUTPUT grade
+ENDPROCEDURE
+
+// Declaration
+DECLARE max, min: INTEGER
+DECLARE total: INTEGER
+DECLARE score: INTEGER
+DECLARE num: INTEGER
+
+// Initialize
+score <- 1
+total <- 0
+max <- -1
+min <- 101
+
+WHILE score <> -1 DO
+    OUTPUT "Please enter the score (-1 to end): "
+    INPUT score
+    IF score <> -1 THEN // valie
+        total <- total + score // total
+        num <- num + 1 // num
+        IF score > max THEN // max
+            max <- score
+        ENDIF
+        IF score < min THEN // min
+            min <- score
+        ENDIF
+    ENDIF
+ENDWHILE
+
+// OUTPUT
+OUTPUT "Average: ", total / num, "("
+CALL Grade(total / num)
+OUTPUT ")\n"
+
+OUTPUT "Max: ", max, "("
+CALL Grade(max)
+OUTPUT ")\n"
+
+OUTPUT "Min: ", min, "("
+CALL Grade(min)
+OUTPUT ")\n"
+
+// HOMEWORK
+
+// 5
+DECLARE height: REAL
+CONSTANT maxHeight = 25
+DECLARE width: REAL
+CONSTANT maxWidth = 30
+DECLARE hypotenuse: REAL
+DECLARE area: REAL
+
+// 6
+
+// Enter the height
+REPEAT
+    OUTPUT "Please enter the height:"
+    INPUT height
+UNTIL height > 0 AND height <= maxHeight
+
+// Enter the width
+REPEAT
+    OUTPUT "Please enter the width:"
+    INPUT width
+UNTIL width > 0 AND width <= maxWidth
+
+// Calculations
+DECLARE option: INTEGER
+OUTPUT "Please select the value you want to calculate: "
+OUTPUT "1. Hypotenuse 2. Area 3. Perimeter"
+INPUT option
+CASE OF option
+    1:
+        hypotenuse <- SQUAREROOT(height^2 + width^2)
+        OUTPUT "Hypotenuse: ", hypotenuse
+    2:
+        area <- height * width / 2
+        OUTPUT "Area: ", area
+    3:
+        hypotenuse <- SQUAREROOT(height^2 + width^2)
+        OUTPUT "Perimeter: ", height + width + hypotenuse
+    OTHERWISE:
+        OUTPUT "Invalid option"
+ENDCASE
+
+// 8
+OUTPUT "Enter purchase price"
+INPUT PurchasePrice
+CurrentValue <- PurchasePrice
+YearCount <- 1
+
+WHILE YearCount <> 9 AND CurrentValue >= 1000 DO
+    IF YearCount == 1 THEN
+        CurrentValue <- CurrentValue * (1 - 40) / 100
+    ELSE
+        CurrentValue <- CurrentValue * (1 - 20) / 100
+    ENDIF
+    OUTPUT YearCount, CurrentValue
+    YearCount <- YearCount + 1
+ENDWHILE

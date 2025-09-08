@@ -1,0 +1,59 @@
+REPEAT
+    OUTPUT "Enter your exam mark"
+    INPUT Mark 
+    IF Mark < 40 THEN
+        Grade <- "Fail"
+    ELSE
+        IF Mark < 60 THEN
+            Grade <- "Pass"
+        ELSE
+            IF Mark < 80 THEN
+                Grade <- "Merit"
+            ELSE
+                Grade <- "Distinction"
+            ENDIF
+        ENDIF
+    ENDIF
+
+    OUTPUT "Your grade is ", Grade
+
+    OUTPUT "Enter another exam mark Y/N"
+    INPUT Reply
+UNTIL Reply <> "Y"
+
+///////
+
+DECLARE Password : STRING
+DECLARE Check : STRING
+DECLARE Counter : INTEGER
+DECLARE Correct : BOOLEAN
+
+Password <- ""
+
+REPEAT
+    OUTPUT "Please set the password:"
+    INPUT Password
+
+    OUTPUT "Please re-enter the password:"
+    INPUT Check
+
+    IF Check <> Password THEN
+        OUTPUT "The password doesn't match! Try again!"
+    ENDIF
+UNTIL Check = Password
+
+OUTPUT "The password is set successfully. "
+
+Counter <- 0
+Correct <- FALSE
+WHILE Counter <> 3 AND NOT Correct DO
+    OUTPUT "Please enter the password"
+    INPUT Check
+    IF Check = Password THEN
+        OUTPUT "Password correct!"
+        Correct <- TRUE
+    ELSE
+        OUTPUT "Incorrect. "
+    ENDIF
+    Counter <- Counter + 1
+ENDWHILE

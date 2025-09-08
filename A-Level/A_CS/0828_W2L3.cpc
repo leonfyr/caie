@@ -1,0 +1,82 @@
+// Activity One
+DECLARE CallLength : REAL
+DECLARE Cost : REAL
+
+REPEAT // Input
+    OUTPUT "Please enter the total length of a call: "
+    INPUT CallLength
+    IF CallLength < 0 THEN // Range Check
+        OUTPUT "Invalid time length!"
+    ENDIF
+UNTIL CallLength >= 0
+
+IF CallLength < 2 THEN
+    Cost <- 1.15
+ELSE
+    Cost <- 1.15 + 0.50 * (CallLength - 2)
+ENDIF
+
+OUTPUT "The costs is: ", CallLength
+
+// Activity Two
+DECLARE Num1 : INTEGER
+DECLARE Num2 : INTEGER
+
+REPEAT // Input
+    OUTPUT "Please enter the first number: "
+    INPUT Num1
+    OUTPUT "Please enter the second number: "
+    INPUT Num2
+    
+    IF Num1 < 0 OR Num2 < 0 THEN // Range Check
+        OUTPUT "Input invalid!"
+    ENDIF
+UNTIL Num1 >= 0 AND Num2 >= 0
+
+IF Num1 > Num2 THEN
+    OUTPUT DIV(Num1, Num2), " r ", MOD(Num1, Num2)
+ELSE
+    IF Num1 < Num2 THEN
+        OUTPUT DIV(Num2, Num1), " r ", MOD(Num2, Num1)
+    ENDIF
+    IF Num1 = Num2 THEN
+        IF Num1 = 0 THEN
+            OUTPUT "Invalid input!"
+        ELSE
+            OUTPUT "1 r 0"
+        ENDIF
+    ENDIF
+ENDIF
+
+// Activity Three
+DECLARE a, b, c : REAL
+
+//Input
+OUTPUT "Please enter the first side length: "
+INTPUT a
+OUTPUT "Please enter the second side length: "
+INTPUT b
+OUTPUT "Please enter the third side length: "
+INTPUT c
+
+IF a > b AND a > c THEN // a is the maximum
+    IF a^2 = b^2 + c^2 THEN
+        OUTPUT "It is a right triangle. "
+    ELSE
+        OUTPUT "It is not a right triangle. "
+    ENDIF
+ELSE
+    IF b > c THEN // b is the maximum
+        IF b^2 = a^2 + c^2 THEN
+            OUTPUT "It is a right triangle. "
+        ELSE
+            OUTPUT "It is not a right triangle. "
+        ENDIF
+    ELSE // c is the maximum
+        IF c^2 = a^2 + b^2 THEN
+            OUTPUT "It is a right triangle. "
+        ELSE
+            OUTPUT "It is not a right triangle. "
+        ENDIF
+    ENDIF
+ENDIF

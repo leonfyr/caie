@@ -1,0 +1,55 @@
+// 1
+
+// Functions
+FUNCTION CelsiusToFahrenheit(celsius:REAL) RETURNS REAL
+    DECLARE fahrenheit:REAL
+    fahrenheit <- (celsius * 9/5) + 32
+    RETURN fahrenheit
+ENDFUNCTION
+
+FUNCTION FahrenheitToCelsius(fahrenheit:REAL) RETURNS REAL
+    DECLARE celsius:REAL
+    celsius <- (fahrenheit - 32) * 5/9
+    RETURN celsius
+ENDFUNCTION
+
+// Main Program
+DECLARE tempCelsius:REAL
+DECLARE tempFahrenheit:REAL
+
+// C2F
+OUTPUT "Please enter temperature in Celsius: "
+INPUT tempCelsius
+OUTPUT "Temperature in Fahrenheit: ", CelsiusToFahrenheit(tempCelsius)
+
+// F2C
+OUTPUT "Please enter temperature in Fahrenheit: "
+INPUT tempFahrenheit
+OUTPUT "Temperature in Celsius: ", FahrenheitToCelsius(tempFahrenheit)
+
+
+// 2
+
+// Procedures
+PROCEDURE CelsiusToFahrenheit(BYREF temperature:REAL)
+    temperature <- (temperature * 9/5) + 32
+ENDPROCEDURE
+
+PROCEDURE FahrenheitToCelsius(BYREF temperature:REAL)
+    temperature <- (temperature - 32) * 5/9
+ENDPROCEDURE
+
+// Main Program
+DECLARE temperature:REAL
+
+// C2F
+OUTPUT "Please enter temperature in Celsius: "
+INPUT temperature
+CALL CelsiusToFahrenheit(temperature)
+OUTPUT "Temperature in Fahrenheit: ", temperature
+
+// F2C
+OUTPUT "Please enter temperature in Fahrenheit: "
+INPUT temperature
+CALL FahrenheitToCelsius(temperature)
+OUTPUT "Temperature in Celsius: ", temperature

@@ -1,0 +1,118 @@
+// /// Activity 1
+
+// // Declaration
+// DECLARE Num1 : REAL
+// DECLARE Num2 : REAL
+// DECLARE opt: CHAR
+// DECLARE flag : BOOLEAN
+// DECLARE ans : REAL
+
+// flag <- TRUE
+// WHILE flag = TRUE DO
+//     // Input two numbers and the operator
+//     OUTPUT "Please enter the two numbers:"
+//     INPUT Num1
+//     INPUT Num2
+
+//     OUTPUT "Please enter the operator: "
+//     INPUT opt
+    
+//     //Check
+//     IF opt = "\" AND Num2 = 0 THEN // divided by 0
+//         OUTPUT "Invalid divisor"
+//     ELSE
+//         IF opt <> '+' OR opt <> '-' OR opt <> '*' OR opt <> '/' THEN // invalid operator
+//             OUTPUT "Invalid operator"
+//         ELSE // Valid, break the loop
+//             flag <- FALSE
+//         ENDIF
+//     ENDIF
+// ENDWHILE
+
+// // Calculations
+// CASE opt OF 
+//     '+' : ans <- Num1 + Num2
+//     '-' : ans <- Num1 - Num2
+//     '*' : ans <- Num1 * Num2
+//     '/' : ans <- Num1 / Num2
+// ENDCASE
+
+// // Output
+// OUTPUT "The answer is:", ans
+
+/// Activity 2
+
+FOR height <- 1 TO 10
+    FOR width <- 1 TO 10
+        OUTPUT "For a ", height, " by ", width, " rectangle... "
+        OUTPUT "the perimeter is ", 2 * (height + width)
+        OUTPUT "the area is ", (width * height)
+        OUTPUT ""
+    NEXT width
+NEXT height
+
+/// Activity 3
+DECLARE exp : INTEGER
+DECLARE flag : BOOLEAN
+flag <- TRUE
+
+WHILE flag = TRUE DO 
+    // Input
+    OUTPUT "Please enter the exponent: "
+    INPUT exp
+
+    IF exp = -1 THEN // Exit
+        OUTPUT "Exiting..."
+        flag <- FALSE
+    ELSE
+        IF exp > 0 THEN // Valid
+            OUTPUT "2 to the power of ", exp, " is ", 2^exp
+        ELSE // Invalie
+            OUTPUT "Please enter a positive exponent. "
+        ENDIF
+    ENDIF
+ENDWHILE
+
+/// Activity 4
+
+// Declaration 
+DECLARE Num : INTEGER
+DECLARE Correct : BOOLEAN
+DECLARE Times : INTEGER
+DECLARE Guess : INTEGER
+
+// Input the number
+OUTPUT "Please enter the number to be guessed:"
+INPUT Num
+
+// Guess the number
+OUTPUT "Guess a number between 1 and 100."
+Correct <- FALSE
+Times <- 0
+WHILE Correct = FALSE DO
+    Times <- Times + 1
+    // Input
+    OUTPUT "Enter your guess:"
+    INPUT Guess
+
+    // Range Check
+    IF Guess < 0 OR Guess > 100 THEN
+        OUTPUT "Invalid input! Try again. "
+    ELSE
+
+        // Comparison
+        IF Guess = Num THEN // Correct
+            OUTPUT "Hooray! Your answer is correct! "
+            Correct <- TRUE
+        ELSE
+            IF Guess < Num THEN // less than
+                OUTPUT "Your guess is smaller than the actual value. "
+            ELSE // greater than
+                OUTPUT "Your guess is greater than the actual value. "
+            ENDIF
+        ENDIF
+
+    ENDIF
+ENDWHILE
+
+OUTPUT "You guesses ", Times, " times. "
