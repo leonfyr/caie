@@ -1,0 +1,32 @@
+PROCEDURE Initialise(BYREF N : INTEGER, Count : INTEGER) // Initialise N to 0
+    OUTPUT "Please enter a number: "
+    INPUT N 
+    Count <- 1
+ENDPROCEDURE
+
+FUNCTION Square (count : INTEGER) RETURNS INTEGER // Squares the value
+    RETURN count * count
+ENDFUNCTION
+
+PROCEDURE Increment (BYREF count : INTEGER) // Increase the value by 1
+    count <- count + 1
+ENDPROCEDURE
+
+PROCEDURE N_Square_Generator(BYREF Count) // Main program
+    REPEAT
+        N2 <- Square(Count) // Calls the Square function
+        OUTPUT "The square of ", Count, " is ", N2
+        CALL Increment(Count)
+    UNTIL Count > N
+ENDPROCEDURE
+
+// Declarations
+DECLARE N : INTEGER
+DECLARE N2 : INTEGER
+DECLARE Count : INTEGER
+
+// Input
+CALL Initialise(N, Count)
+
+// Process and Output
+CALL N_Square_Generator(Count)
